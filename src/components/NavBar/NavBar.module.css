@@ -1,9 +1,13 @@
 .wrapper {
-  background-color: var(--dark-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
   padding: 10px;
   overflow-x: auto; /* Allows horizontal scrolling */
   white-space: nowrap; /* Prevents breaking into new lines */
   margin: auto;
+  width: 80%;
 }
 
 .navItemsContainer {
@@ -14,33 +18,64 @@
   gap: 15px;
 }
 
+.container {
+  position: relative;
+}
+.container::before,
+.container::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background-color: var(--primary-green); /* Arrow color */
+  clip-path: polygon(0% 50%, 100% 0%, 100% 100%);
+  cursor: pointer;
+  z-index: 1; /* Make sure arrows are on top */
+}
+
+.container::before {
+  left: 0;
+  /* Optional: Add some space from the edge */
+  margin-left: 10px;
+}
+
+.container::after {
+  right: 0;
+  /* Optional: Add some space from the edge */
+  margin-right: 10px;
+  transform: translateY(-50%) rotate(180deg); /* Rotate the arrow for the right side */
+}
+
 .navItem {
   display: inline-block;
 }
 
 .categoryNavItem {
   padding: 10px 20px;
-  background-color: var(--light-green);
+  background-color: var(--primary-green);
   color: white;
   text-decoration: none;
   font-size: 1rem;
   border-radius: 30px; /* Rounded breadcrumb style */
-  transition: background-color 0.3s ease;
+  transition: 0.3s ease;
 }
 
 .categoryNavItem:hover {
-  background-color: var(--primary-green);
-  color: white;
+  background-color: var(--complementary-orange);
+  color: #fff;
 }
 
 .active {
-  background-color: var(--complementary-orange);
-  color: white;
+  background-color: var(--complementary-orange) !important;
+  color: #fff;
 }
 
 @media (max-width: 768px) {
   .wrapper {
     padding: 10px 15px;
+    display: block;
   }
 
   .categoryNavItem {

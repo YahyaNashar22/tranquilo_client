@@ -5,6 +5,8 @@ import { Link } from "react-scroll";
 
 const NavBar = ({ categories }) => {
   return (
+    <div className={styles.container}>
+
     <nav className={styles.wrapper}>
       <ul className={styles.navItemsContainer}>
         {categories.map((category) => {
@@ -24,6 +26,8 @@ const NavBar = ({ categories }) => {
         })}
       </ul>
     </nav>
+    </div>
+
   );
 };
 

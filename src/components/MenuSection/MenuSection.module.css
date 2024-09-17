@@ -1,6 +1,6 @@
 .menuSection {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
   background-size: cover; /* Ensures the image covers the entire section */
   background-position: center; /* Centers the image */
   background-repeat: no-repeat; /* Prevents the image from repeating */

@@ -27,6 +27,13 @@ const Home = () => {
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   useEffect(() => {
     fetchCategories();
   }, []);
@@ -74,6 +81,11 @@ const Home = () => {
           </>
         )}
       </main>
+
+      {/* Back to Top Button */}
+      <button className="back-to-top" onClick={scrollToTop}>
+        &#8593;
+      </button>
     </>
   );
 };
