@@ -1,0 +1,53 @@
+/* Main header container */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary-green);
+  padding: 20px;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Title styling */
+.title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--accent-gold); /* Accent color for the title */
+  margin: 0;
+}
+
+.title:hover {
+  cursor: pointer;
+}
+
+/* Sign out link */
+.signout {
+  font-size: 1rem;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: var(--complementary-orange);
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.signout:hover {
+  background-color: var(--dark-green);
+  transform: scale(1.05); /* Slight hover scale effect */
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .signout {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+  }
+}

@@ -1,0 +1,26 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  position: relative;
+  background-color: var(--primary-green);
+  overflow: hidden;
+}
+
+.logo {
+  overflow: hidden;
+}
+
+.dashboard {
+  position: absolute;
+  bottom: 0;
+  margin: 10px auto;
+  padding: 10px 5px;
+  border: 1px solid var(--complementary-orange);
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: var(--complementary-orange);
+}

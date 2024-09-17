@@ -1,0 +1,89 @@
+.menuSection {
+  position: relative;
+  height: 100vh;
+  background-size: cover; /* Ensures the image covers the entire section */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  display: flex;
+  align-items: center; /* Vertically center the content */
+  justify-content: center; /* Horizontally center the content */
+  color: white;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Add a semi-transparent overlay for better text readability */
+  z-index: 1;
+}
+
+.contentContainer {
+  position: relative;
+  z-index: 2; /* Ensure content appears above the overlay */
+  text-align: center;
+}
+
+.sectionHeader {
+  font-size: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent-gold);
+  margin: 0;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.7
+  ); /* Semi-transparent background behind the text */
+}
+
+.productList {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product {
+  background-color: rgba(255, 255, 255, 0.1); /* Light overlay on products */
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin: 10px 0;
+  width: 80%;
+  max-width: 400px;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  transition: transform 0.3s ease-in-out;
+}
+
+.product:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .sectionHeader {
+    font-size: 2rem;
+  }
+
+  .productList {
+    flex-direction: column;
+  }
+
+  .product {
+    width: 100%;
+  }
+}

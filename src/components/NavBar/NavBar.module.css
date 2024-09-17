@@ -1,0 +1,50 @@
+.wrapper {
+  background-color: var(--dark-green);
+  padding: 10px;
+  overflow-x: auto; /* Allows horizontal scrolling */
+  white-space: nowrap; /* Prevents breaking into new lines */
+  margin: auto;
+}
+
+.navItemsContainer {
+  display: flex;
+  list-style: none;
+  padding: 20px 10px;
+  margin: 0;
+  gap: 15px;
+}
+
+.navItem {
+  display: inline-block;
+}
+
+.categoryNavItem {
+  padding: 10px 20px;
+  background-color: var(--light-green);
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 30px; /* Rounded breadcrumb style */
+  transition: background-color 0.3s ease;
+}
+
+.categoryNavItem:hover {
+  background-color: var(--primary-green);
+  color: white;
+}
+
+.active {
+  background-color: var(--complementary-orange);
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 10px 15px;
+  }
+
+  .categoryNavItem {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+  }
+}

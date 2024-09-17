@@ -1,0 +1,78 @@
+.wrapper {
+  background-color: #125e30; /* Primary green background */
+  color: #fff; /* White text for contrast */
+  padding: 40px 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  font-family: "Roboto", sans-serif; /* Nice modern font */
+}
+
+.logo {
+  width: 200px; /* Increase logo size */
+  max-width: 100%; /* Ensure it stays responsive */
+  height: auto; /* Maintain aspect ratio */
+  margin-bottom: 20px;
+  scale: 2;
+  overflow: hidden;
+}
+
+.logoContainer {
+  flex: 1;
+  min-width: 200px;
+  margin: 20px 0;
+  overflow: hidden;
+}
+
+.contact {
+  flex: 1;
+  min-width: 200px;
+  margin: 20px 0;
+}
+
+.header {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #e6c84e; /* Accent gold for headers */
+}
+
+.subheader {
+  font-size: 1.3rem;
+  color: #d1d5db; /* Soft gray for text */
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.subheader:hover {
+  color: #e6c84e; /* Hover effect to match accent */
+}
+
+a.subheader {
+  display: block;
+  margin-top: 10px;
+}
+
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .contact {
+    margin-bottom: 30px;
+  }
+
+  .logo {
+    margin-bottom: 40px;
+    width: 150px; /* Adjust size for smaller screens */
+  }
+}

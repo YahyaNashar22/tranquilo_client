@@ -1,0 +1,130 @@
+.wrapper {
+  padding: 20px;
+}
+
+h1 {
+  font-size: 2rem;
+  color: var(--primary-green);
+  margin-bottom: 20px;
+}
+
+.operationButtons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  overflow-x: auto; /* Allow horizontal scrolling */
+  white-space: nowrap; /* Prevents buttons from wrapping */
+  padding: 10px 0; /* Add some space for better touch scrolling */
+}
+
+.operationButtons::-webkit-scrollbar {
+  display: none; /* Hide the scrollbar for better UI on mobile */
+}
+
+.btn {
+  padding: 10px;
+  background-color: var(--primary-green);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.operationHeader {
+  font-size: 2.5rem; /* Larger size to make it prominent */
+  color: var(--primary-green); /* Using primary green for the text */
+  text-align: center; /* Center align to make it look neat */
+  margin-bottom: 20px; /* Add space below the header */
+  font-weight: bold; /* Make it bold for emphasis */
+  position: relative; /* Position relative for adding the line decoration */
+}
+
+.operationHeader::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+  width: 100px; /* Width of the decorative line */
+  height: 4px; /* Height of the decorative line */
+  background-color: var(--accent-gold); /* Accent gold for a nice touch */
+  border-radius: 2px; /* Rounds the corners of the line */
+}
+
+.operationHeader::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -15px;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background-color: var(
+    --complementary-orange
+  ); /* Complementary orange for a subtle contrast */
+  border-radius: 1px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.input {
+  padding: 10px;
+  border: 1px solid var(--soft-gray);
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.categoryList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  list-style: none; /* Removes the bullet points */
+  padding: 0;
+}
+
+.categoryCard {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.categoryCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.categoryTitle {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* A subtle overlay to make text more readable */
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  box-sizing: border-box;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
