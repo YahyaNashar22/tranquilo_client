@@ -35,7 +35,7 @@ h1 {
   font-size: 2.5rem; /* Larger size to make it prominent */
   color: var(--primary-green); /* Using primary green for the text */
   text-align: center; /* Center align to make it look neat */
-  margin-bottom: 20px; /* Add space below the header */
+  margin-bottom: 40px; /* Add space below the header */
   font-weight: bold; /* Make it bold for emphasis */
   position: relative; /* Position relative for adding the line decoration */
 }
@@ -102,6 +102,10 @@ h1 {
   align-items: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.categoryCard:active {
+  cursor: grabbing; 
 }
 
 .categoryCard:hover {

@@ -5,7 +5,7 @@ import AppRoutes from "./routes/AppRoutes";
 import { UserContext } from "./context/UserContext";
 
 function App() {
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
 
   const refetchUser = () => {
@@ -14,8 +14,6 @@ function App() {
     if (!localUser) setUser(null);
     else setUser(JSON.parse(localUser));
   };
-
-  console.log(user);
 
   useEffect(() => {
     refetchUser();

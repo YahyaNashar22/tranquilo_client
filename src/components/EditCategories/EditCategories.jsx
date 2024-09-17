@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
+
 import styles from "./EditCategories.module.css";
 
 const EditCategories = () => {
@@ -8,6 +9,8 @@ const EditCategories = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [operation, setOperation] = useState(""); // Track current operation
   const [loading, setLoading] = useState(false);
+  const [draggingIndex, setDraggingIndex] = useState(null); // Track dragging index
+  const dragItem = useRef(null); // Reference for dragged item
 
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
@@ -19,7 +22,10 @@ const EditCategories = () => {
   const fetchCategories = async () => {
     try {
       const response = await axios.get(`${backendUrl}/categories/get`);
-      setCategories(response.data.payload);
+      const sortedCategories = response.data.payload.sort(
+        (a, b) => a.order - b.order
+      );
+      setCategories(sortedCategories);
     } catch (error) {
       console.log("Error fetching categories:", error);
     }
@@ -79,6 +85,77 @@ const EditCategories = () => {
     }
   };
 
+  const handleDragStart = (e, index) => {
+    e.dataTransfer.setData("text/plain", index);
+    setDraggingIndex(index);
+    dragItem.current = index;
+  };
+
+  const handleDrop = (e, index) => {
+    e.preventDefault();
+    const startIndex = e.dataTransfer.getData("text/plain");
+    const updatedCategories = Array.from(categories);
+    const [movedCategory] = updatedCategories.splice(startIndex, 1);
+    updatedCategories.splice(index, 0, movedCategory);
+
+    setCategories(updatedCategories);
+
+    const updatedOrder = updatedCategories.map((category, idx) => ({
+      id: category._id,
+      order: idx,
+    }));
+
+    axios
+      .put(`${backendUrl}/categories/updateOrder`, { categories: updatedOrder })
+      .catch((error) => console.log("Error updating category order:", error));
+
+    setDraggingIndex(null);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
+  // Mobile touch handlers
+  const handleTouchStart = (e, index) => {
+    e.preventDefault();
+    setDraggingIndex(index);
+    dragItem.current = index;
+  };
+
+  const handleTouchMove = (e) => {
+    e.preventDefault();
+    if (draggingIndex !== null) {
+      const touch = e.touches[0];
+      const element = e.target;
+      const rect = element.getBoundingClientRect();
+      const offsetY = touch.clientY - rect.top;
+      element.style.transform = `translateY(${offsetY}px)`;
+    }
+  };
+
+  const handleTouchEnd = (e, index) => {
+    e.preventDefault();
+    if (draggingIndex !== null) {
+      setDraggingIndex(null);
+      const newCategories = Array.from(categories);
+      const [movedCategory] = newCategories.splice(dragItem.current, 1);
+      newCategories.splice(index, 0, movedCategory);
+      setCategories(newCategories);
+
+      const updatedOrder = newCategories.map((category, idx) => ({
+        id: category._id,
+        order: idx,
+      }));
+
+      axios
+        .put(`${backendUrl}/categories/updateOrder`, {
+          categories: updatedOrder,
+        })
+        .catch((error) => console.log("Error updating category order:", error));
+    }
+  };
+
   return (
     <div className={styles.wrapper}>
       <h1>Manage Categories</h1>
@@ -93,6 +170,9 @@ const EditCategories = () => {
         </button>
         <button onClick={() => setOperation("delete")} className={styles.btn}>
           Delete Category
+        </button>
+        <button onClick={() => setOperation("arrange")} className={styles.btn}>
+          Arrange Categories
         </button>
         <button
           onClick={() => {
@@ -184,6 +264,36 @@ const EditCategories = () => {
           <ul className={styles.categoryList}>
             {categories.map((category) => (
               <li key={category._id} onClick={() => handleDelete(category._id)}>
+                <div
+                  className={styles.categoryCard}
+                  style={{
+                    backgroundImage: `url(${backendUrl}/${category.image})`,
+                  }}
+                >
+                  <span className={styles.categoryTitle}>{category.name}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {operation === "arrange" && (
+        <div>
+          <h2 className={styles.operationHeader}>Arrange Categories</h2>
+          <ul className={styles.categoryList}>
+            {categories.map((category, index) => (
+              <li
+                key={category._id}
+                draggable
+                onDragStart={(e) => handleDragStart(e, index)}
+                onDrop={(e) => handleDrop(e, index)}
+                onDragOver={handleDragOver}
+                onTouchStart={(e) => handleTouchStart(e, index)}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={(e) => handleTouchEnd(e, index)}
+                className={styles.categoryItem}
+              >
                 <div
                   className={styles.categoryCard}
                   style={{

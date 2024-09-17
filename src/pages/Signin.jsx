@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/UserContext.jsx";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 import axios from "axios";
 
@@ -41,40 +42,62 @@ const Signin = () => {
 
   useEffect(() => {
     if (user !== null) navigate("/dashboard/manage");
-  }, [user]);
+  }, [user, navigate]);
 
   return (
-    <div className="form-container">
-      <form method="POST" onSubmit={handleSubmit} className="form-wrapper">
-        <label className="form-labels">
-          username
-          <input
-            type="text"
-            name="username"
-            placeholder="username"
-            value={formData.username}
-            className="form-inputs"
-            onChange={handleChange}
-          />
-        </label>
+    <>
+      <Helmet>
+        <title>Sign in - Tranquilo</title>
+        <meta
+          name="description"
+          content="Sign in to have access to the dashboard."
+        />
+        <meta
+          name="keywords"
+          content="signin, categories, foods, beverages, Tranquilo"
+        />
+        <meta name="author" content="Yahya Nashar" />
+        <meta property="og:title" content="Sign in - Tranquilo" />
+        <meta
+          property="og:description"
+          content="Sign in to have access to the dashboard."
+        />
+        <meta property="og:image" content="../assets/logo_noBackground.png" />
+        <meta property="og:type" content="website" />
+      </Helmet>
 
-        <label className="form-labels">
-          password
-          <input
-            type="password"
-            name="password"
-            placeholder="password"
-            value={formData.password}
-            className="form-inputs"
-            onChange={handleChange}
-          />
-        </label>
+      <div className="form-container">
+        <form method="POST" onSubmit={handleSubmit} className="form-wrapper">
+          <label className="form-labels">
+            username
+            <input
+              type="text"
+              name="username"
+              placeholder="username"
+              value={formData.username}
+              className="form-inputs"
+              onChange={handleChange}
+            />
+          </label>
 
-        <button type="submit" className="primary-btn" disabled={loading}>
-          {loading ? "please wait..." : "Log in"}
-        </button>
-      </form>
-    </div>
+          <label className="form-labels">
+            password
+            <input
+              type="password"
+              name="password"
+              placeholder="password"
+              value={formData.password}
+              className="form-inputs"
+              onChange={handleChange}
+            />
+          </label>
+
+          <button type="submit" className="primary-btn" disabled={loading}>
+            {loading ? "please wait..." : "Log in"}
+          </button>
+        </form>
+      </div>
+    </>
   );
 };
 

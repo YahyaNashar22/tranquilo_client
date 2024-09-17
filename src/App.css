@@ -88,6 +88,38 @@
   animation: spin 1s linear infinite;
 }
 
+/* Dashboard.module.css */
+
+.dashboard-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 15px;
+  margin-bottom: 20px;
+  overflow-x: auto; /* Allow horizontal scrolling if necessary */
+  padding: 10px 0; /* Add some space for better touch scrolling */
+}
+
+.dashboard-btn {
+  padding: 10px;
+  background-color: var(--primary-green);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.dashboard-btn.active {
+  background-color: var(--accent-gold); /* Highlight active button */
+  color: var(--primary-dark); /* Change text color for active state */
+}
+
+.dashboard-content {
+  padding: 20px;
+}
+
 /* Keyframes for spinning animation */
 @keyframes spin {
   0% {
