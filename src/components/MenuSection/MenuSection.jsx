@@ -43,7 +43,12 @@ const MenuSection = ({ category, backendUrl }) => {
             {products.map((product) => {
               return (
                 <li key={product._id} className={styles.product}>
-                  <span className={styles.productName}>{product.name}</span>{" "}
+                  <span className={styles.nameDescription}>
+                    <span className={styles.productName}>{product.name}</span>
+                    <span className={styles.productDescription}>
+                      {product.description}
+                    </span>
+                  </span>{" "}
                   <span className={styles.productPrice}>{product.price}$</span>
                 </li>
               );

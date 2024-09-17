@@ -22,6 +22,17 @@ const EditProducts = () => {
     fetchCategories();
   }, []);
 
+  useEffect(() => {
+    if (selectedProduct && operation === "edit") {
+      setFormData({
+        name: selectedProduct.name || "",
+        description: selectedProduct.description || "",
+        price: selectedProduct.price || "",
+        categoryId: selectedProduct.categoryId || "",
+      });
+    }
+  }, [selectedProduct, operation]);
+
   const fetchProducts = async () => {
     try {
       const response = await axios.post(`${backendUrl}/products/get`);
@@ -162,17 +173,7 @@ const EditProducts = () => {
       {operation === "edit" && (
         <div>
           <h2 className={styles.operationHeader}>Select a Product to Edit</h2>
-          <ul className={styles.productList}>
-            {products.map((product) => (
-              <li
-                key={product._id}
-                onClick={() => setSelectedProduct(product)}
-                className={styles.productItem}
-              >
-                {product.name}
-              </li>
-            ))}
-          </ul>
+
           {selectedProduct && (
             <form onSubmit={handleSubmit} className={styles.form}>
               <h2 className={styles.operationHeader}>Edit Product</h2>
@@ -221,6 +222,17 @@ const EditProducts = () => {
               </button>
             </form>
           )}
+          <ul className={styles.productList}>
+            {products.map((product) => (
+              <li
+                key={product._id}
+                onClick={() => setSelectedProduct(product)}
+                className={styles.productItem}
+              >
+                {product.name}
+              </li>
+            ))}
+          </ul>
         </div>
       )}
 

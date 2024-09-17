@@ -47,6 +47,27 @@
   ); /* Semi-transparent background behind the text */
 }
 
+.nameDescription {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+  height: 100%;
+}
+
+.productPrice {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.productDescription {
+  font-size: 1rem;
+  color: lightgray;
+  font-style: italic;
+}
+
 .productList {
   list-style-type: none;
   padding: 0;

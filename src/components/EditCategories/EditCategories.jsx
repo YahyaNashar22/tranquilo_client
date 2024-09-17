@@ -19,6 +19,15 @@ const EditCategories = () => {
     fetchCategories();
   }, []);
 
+  useEffect(() => {
+    if (selectedCategory && operation === "edit") {
+      setFormData({
+        name: selectedCategory.name || "",
+        image: selectedCategory.image || null,
+      });
+    }
+  }, [selectedCategory, operation]);
+
   const fetchCategories = async () => {
     try {
       const response = await axios.get(`${backendUrl}/categories/get`);
@@ -213,23 +222,7 @@ const EditCategories = () => {
       {operation === "edit" && (
         <div>
           <h2 className={styles.operationHeader}>Select a Category to Edit</h2>
-          <ul className={styles.categoryList}>
-            {categories.map((category) => (
-              <li
-                key={category._id}
-                onClick={() => setSelectedCategory(category)}
-              >
-                <div
-                  className={styles.categoryCard}
-                  style={{
-                    backgroundImage: `url(${backendUrl}/${category.image})`,
-                  }}
-                >
-                  <span className={styles.categoryTitle}>{category.name}</span>
-                </div>
-              </li>
-            ))}
-          </ul>
+
           {selectedCategory && (
             <form onSubmit={handleSubmit} className={styles.form}>
               <h2 className={styles.operationHeader}>Edit Category</h2>
@@ -253,6 +246,23 @@ const EditCategories = () => {
               </button>
             </form>
           )}
+          <ul className={styles.categoryList}>
+            {categories.map((category) => (
+              <li
+                key={category._id}
+                onClick={() => setSelectedCategory(category)}
+              >
+                <div
+                  className={styles.categoryCard}
+                  style={{
+                    backgroundImage: `url(${backendUrl}/${category.image})`,
+                  }}
+                >
+                  <span className={styles.categoryTitle}>{category.name}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
 
